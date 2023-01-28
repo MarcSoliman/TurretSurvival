@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class RapidFirePowerup : PowerUpBase
 {
-    [SerializeField] private float powerUpStrength = 0.5f;
+    [SerializeField] private float powerUpStrength = 2f;
     private TurretController _turretController;
-    private float _initialTurretCoolDown;
+
     private void Awake()
     {
         _turretController = FindObjectOfType<TurretController>();
-        _initialTurretCoolDown = _turretController.FireCooldown;
+
     }
     public override void PowerUp()
     {
-        HideVisuals();
-        _turretController.FireCooldown -= powerUpStrength;
+
+        _turretController.FireCooldown /= powerUpStrength;
     }
 
     public override void PowerDown()
     {
-        _turretController.FireCooldown = _initialTurretCoolDown;
-        DestroyPickup();
+        _turretController.FireCooldown = _turretController.InitialFireCooldown;
+
     }
 }

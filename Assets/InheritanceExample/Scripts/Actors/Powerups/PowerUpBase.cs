@@ -17,18 +17,24 @@ public abstract class PowerUpBase : MonoBehaviour
         powerupVisuals.SetActive(false);
     }
 
-    protected void DestroyPickup()
-    {
-        Destroy(gameObject);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         Projectile projectile = other.GetComponent<Projectile>();
         if (projectile != null)
         {
-            PowerUp();
+            StartCoroutine("PowerUpTimer");
         }
+    }
+
+    IEnumerator PowerUpTimer()
+    {
+        HideVisuals();
+        PowerUp();
+        yield return new WaitForSeconds(PowerupDuration);
+        PowerDown();
+        Destroy(gameObject);
+
     }
 
 }

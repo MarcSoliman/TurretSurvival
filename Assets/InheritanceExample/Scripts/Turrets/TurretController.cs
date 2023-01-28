@@ -10,14 +10,20 @@ public class TurretController : MonoBehaviour
 
     public float FireCooldown { get; set; } = .5f;
 
+    public float InitialFireCooldown { get; private set; }
+
     public bool IsReadyToFire { get; private set; } = true;
+
+
 
     private Camera _camera;
     private float _elapsedCooldownTime;
 
+
     private void Awake()
     {
         _camera = Camera.main;
+        InitialFireCooldown = FireCooldown;
     }
 
     private void TrackCooldown()

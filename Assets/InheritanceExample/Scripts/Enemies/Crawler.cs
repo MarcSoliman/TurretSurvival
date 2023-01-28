@@ -7,7 +7,7 @@ public class Crawler : EnemyBase
 {
     protected override void OnHit()
     {
-        
+
     }
 
     public override void Kill()
